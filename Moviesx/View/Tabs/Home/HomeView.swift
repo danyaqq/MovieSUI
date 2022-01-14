@@ -9,32 +9,15 @@ import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject var movieVM: MovieViewModel
-    var movies: [Movie]{
-        var moviesResult: [Movie] = []
-        for section in Constant.categories{
-            if section == "Trending Movies"{
-                moviesResult = movieVM.trendingMovies
-            } else if section == "Trending TV"{
-                moviesResult = movieVM.trendingTV
-            } else if section == "Popular"{
-                moviesResult = movieVM.popularMovies
-            } else if section == "Upcoming Movies"{
-                moviesResult = movieVM.upcomingMovies
-            } else if section == "Top Rated"{
-                moviesResult = movieVM.topRatedMovies
-            }
-        }
-        return moviesResult
-    }
+    @State var showDetailView: Bool = false
     var body: some View {
         NavigationView{
             ScrollView{
                 headerView
                 LazyVStack {
-                    ForEach(Constant.categories, id: \.self){ section in
-                      
-                            HomeSectionView(title: section, movieVM: movieVM, movies: movies)
-                        
+                    ForEach(Constant.categories, id: \.self){ title in
+                        HomeSectionView(movies: getMovieForSection(title: title), title: title)
+                            .environmentObject(movieVM)
                     }
                 }
             }
@@ -45,6 +28,20 @@ struct HomeView: View {
                 HomeViewModifier()
             )
         }
+    }
+    func getMovieForSection(title: String) -> [Movie]{
+        if title == "Trending Movies"{
+            return movieVM.trendingMovies
+        } else if title == "Trending TV"{
+            return movieVM.trendingTV
+        } else if title == "Popular"{
+            return movieVM.popularMovies
+        } else if title == "Upcoming Movies"{
+            return movieVM.upcomingMovies
+        } else if title == "Top Rated"{
+            return movieVM.topRatedMovies
+        }
+        return []
     }
 }
 

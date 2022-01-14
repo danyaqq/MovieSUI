@@ -18,31 +18,38 @@ class MovieViewModel: ObservableObject{
     @Published var discoverMovies: [Movie] = []
     @Published var searchMovie: [Movie] = []
     
+    
+    @Published var randomTrendingMovie: Movie? = nil
+    @Published var movieURL: String = ""
+    @Published var isLoad = false
+    @Published var errorReceivingVideo = false
+    
     init(){
         
-        getMovies(with: "/3/trending/movie/day?api_key=\(Constant.api_key)") { movies in
+        getMovies(with: "/3/trending/movie/day?api_key=\(Constant.api_key)") { [weak self] movies in
             DispatchQueue.main.async {
-                self.trendingMovies = movies
+                self?.trendingMovies = movies
+                self?.randomTrendingMovie = movies.randomElement()
             }
         }
-        getMovies(with: "/3/trending/tv/day?api_key=\(Constant.api_key)") { movies in
+        getMovies(with: "/3/trending/tv/day?api_key=\(Constant.api_key)") { [weak self] movies in
             DispatchQueue.main.async {
-                self.trendingTV = movies
+                self?.trendingTV = movies
             }
         }
-        getMovies(with: "/3/movie/upcoming?api_key=\(Constant.api_key)&language=en-US&page=1") { movies in
+        getMovies(with: "/3/movie/upcoming?api_key=\(Constant.api_key)&language=en-US&page=1") { [weak self] movies in
             DispatchQueue.main.async {
-                self.upcomingMovies = movies
+                self?.upcomingMovies = movies
             }
         }
-        getMovies(with: "/3/movie/popular?api_key=\(Constant.api_key)&language=en-US&page=1") { movies in
+        getMovies(with: "/3/movie/popular?api_key=\(Constant.api_key)&language=en-US&page=1") {[weak self]  movies in
             DispatchQueue.main.async {
-                self.popularMovies = movies
+                self?.popularMovies = movies
             }
         }
-        getMovies(with: "/3/movie/top_rated?api_key=\(Constant.api_key)&language=en-US&page=1") { movies in
+        getMovies(with: "/3/movie/top_rated?api_key=\(Constant.api_key)&language=en-US&page=1") {  [weak self] movies in
             DispatchQueue.main.async {
-                self.topRatedMovies = movies
+                self?.topRatedMovies = movies
             }
         }
         
@@ -89,19 +96,25 @@ class MovieViewModel: ObservableObject{
             }catch{
                 completion(.failure(error))
             }
+            
         }
         task.resume()
     }
     
     func getYouTubeMovie(with query: String, completion: @escaping(Result<VideoElement, Error>)->Void){
-        guard let query = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return }
+        guard let query = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed), query != "" else { return }
         
         guard let url = URL(string: "\(Constant.youtubeBaseURL)q=\(query)&key=\(Constant.youtube_api_key)") else { return }
-        
+        self.isLoad = true
+        self.errorReceivingVideo = false
         let task = URLSession.shared.dataTask(with: url) { data, _, error in
             if let error = error {
-                completion(.failure(error))
-                print(error.localizedDescription)
+                DispatchQueue.main.async {
+                    self.isLoad = false
+                    self.errorReceivingVideo = true
+                    completion(.failure(error))
+                }
+                
             }
             guard let data = data else {
                 return
@@ -109,13 +122,22 @@ class MovieViewModel: ObservableObject{
             do{
                 let results = try JSONDecoder().decode(YouTubeMovieResponse.self, from: data)
                 if let result = results.items.first{
-                    completion(.success(result))
+                    DispatchQueue.main.async {
+                        completion(.success(result))
+                        self.isLoad = false
+                        self.errorReceivingVideo = false
+                    }
+                    
                 }
                 
             }catch{
-                completion(.failure(error))
-                print(error.localizedDescription)
+                DispatchQueue.main.async {
+                    self.errorReceivingVideo = true
+                    completion(.failure(error))
+                    print(error.localizedDescription)
+                }
             }
+            
         }
         task.resume()
     }

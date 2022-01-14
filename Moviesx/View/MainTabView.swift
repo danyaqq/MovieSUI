@@ -26,18 +26,20 @@ struct MainTabView: View {
                 }
                 .tag(Tabs.home)
                 .environmentObject(movieVM)
-            Text("Coming")
+            UpcomingView()
                 .tabItem {
                     Image(systemName: "play.circle")
                     Text("Upcoming")
                 }
                 .tag(Tabs.coming)
-            Text("Search")
+                .environmentObject(movieVM)
+            SearchView()
                 .tabItem {
                     Image(systemName: "magnifyingglass")
                     Text("Search")
                 }
                 .tag(Tabs.search)
+                .environmentObject(movieVM)
             Text("Downloads")
                 .tabItem {
                     Image(systemName: "arrow.down.to.line")

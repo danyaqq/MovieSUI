@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		37627BB82790F40300FEF6B0 /* SearchScreens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37627BB72790F40300FEF6B0 /* SearchScreens.swift */; };
+		37FF4D672790DCBB004C8D61 /* UpcomingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FF4D662790DCBB004C8D61 /* UpcomingView.swift */; };
+		37FF4D692790DDAC004C8D61 /* MovieCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FF4D682790DDAC004C8D61 /* MovieCardView.swift */; };
+		37FF4D6C2790E607004C8D61 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FF4D6B2790E607004C8D61 /* SearchView.swift */; };
 		3FBDE04D2790177500D7E961 /* MoviesxApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBDE04C2790177500D7E961 /* MoviesxApp.swift */; };
 		3FBDE04F2790177500D7E961 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBDE04E2790177500D7E961 /* ContentView.swift */; };
 		3FBDE0512790177600D7E961 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FBDE0502790177600D7E961 /* Assets.xcassets */; };
@@ -26,6 +30,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		37627BB72790F40300FEF6B0 /* SearchScreens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreens.swift; sourceTree = "<group>"; };
+		37FF4D662790DCBB004C8D61 /* UpcomingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingView.swift; sourceTree = "<group>"; };
+		37FF4D682790DDAC004C8D61 /* MovieCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCardView.swift; sourceTree = "<group>"; };
+		37FF4D6B2790E607004C8D61 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		3FBDE0492790177500D7E961 /* Moviesx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moviesx.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FBDE04C2790177500D7E961 /* MoviesxApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesxApp.swift; sourceTree = "<group>"; };
 		3FBDE04E2790177500D7E961 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -57,6 +65,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		37FF4D652790DCAF004C8D61 /* Upcoming */ = {
+			isa = PBXGroup;
+			children = (
+				37FF4D662790DCBB004C8D61 /* UpcomingView.swift */,
+			);
+			path = Upcoming;
+			sourceTree = "<group>";
+		};
+		37FF4D6A2790E5F9004C8D61 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				37FF4D6B2790E607004C8D61 /* SearchView.swift */,
+				37627BB72790F40300FEF6B0 /* SearchScreens.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		3FBDE0402790177500D7E961 = {
 			isa = PBXGroup;
 			children = (
@@ -100,6 +125,7 @@
 				3FBDE0662790224C00D7E961 /* Components */,
 				3FBDE06127901D6100D7E961 /* Tabs */,
 				3FBDE05F2790182600D7E961 /* MainTabView.swift */,
+				3FBDE07F2790417A00D7E961 /* DetailMovieView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -124,8 +150,9 @@
 		3FBDE06127901D6100D7E961 /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
+				37FF4D6A2790E5F9004C8D61 /* Search */,
+				37FF4D652790DCAF004C8D61 /* Upcoming */,
 				3FBDE06227901D6F00D7E961 /* Home */,
-				3FBDE07F2790417A00D7E961 /* DetailMovieView.swift */,
 			);
 			path = Tabs;
 			sourceTree = "<group>";
@@ -155,6 +182,7 @@
 		3FBDE0662790224C00D7E961 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				37FF4D682790DDAC004C8D61 /* MovieCardView.swift */,
 				3FBDE0672790226300D7E961 /* CustomButtonModifier.swift */,
 			);
 			path = Components;
@@ -243,8 +271,12 @@
 				3FBDE07027902F8E00D7E961 /* Movie.swift in Sources */,
 				3FBDE06C27902CCC00D7E961 /* HomeSectionView.swift in Sources */,
 				3FBDE06E27902F6400D7E961 /* Constant.swift in Sources */,
+				37FF4D692790DDAC004C8D61 /* MovieCardView.swift in Sources */,
+				37627BB82790F40300FEF6B0 /* SearchScreens.swift in Sources */,
+				37FF4D672790DCBB004C8D61 /* UpcomingView.swift in Sources */,
 				3FBDE0802790417A00D7E961 /* DetailMovieView.swift in Sources */,
 				3FBDE06427901D7600D7E961 /* HomeView.swift in Sources */,
+				37FF4D6C2790E607004C8D61 /* SearchView.swift in Sources */,
 				3FBDE04D2790177500D7E961 /* MoviesxApp.swift in Sources */,
 				3FBDE0602790182600D7E961 /* MainTabView.swift in Sources */,
 				3FBDE0682790226300D7E961 /* CustomButtonModifier.swift in Sources */,
@@ -379,6 +411,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Moviesx/Preview Content\"";
+				DEVELOPMENT_TEAM = 5RVS7LV4U3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Moviesx/Info.plist;
@@ -409,6 +442,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Moviesx/Preview Content\"";
+				DEVELOPMENT_TEAM = 5RVS7LV4U3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Moviesx/Info.plist;

@@ -40,12 +40,6 @@ struct MainTabView: View {
                 }
                 .tag(Tabs.search)
                 .environmentObject(movieVM)
-            Text("Downloads")
-                .tabItem {
-                    Image(systemName: "arrow.down.to.line")
-                    Text("Downloads")
-                }
-                .tag(Tabs.downloads)
         }
     }
 }
